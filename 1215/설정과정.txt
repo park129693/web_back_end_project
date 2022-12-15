@@ -1,0 +1,99 @@
+1. vm 설치
+
+-> 이름
+-> ubuntu 18.04
+-> http/https 허용
+
+2. apache, php ,maria 설치
+
+-> apache
+
+sudo apt-get update
+
+sudo apt-get install -y apache2
+
+->php7.0
+
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt search php7
+sudo apt install -y php7.0-mysql php7.0-curl php7.0-json php7.0-cgi php7.0 libapache2-mod-php7.0
+
+->mariadby
+
+sudo apt update
+
+sudo apt install -y mariadb-server
+
+sudo mysql_secure_installation
+-> root pw: 1234
+-> all "yes"
+
+sudo mysql -u root -p
+
+create user 'user0'@'%' identified by '1234';
+
+grant all privileges on *.* to 'user0'@'%';
+
+exit
+
+mysql -u user0 -p
+
+create database csv;
+
+create database user;
+
+use csv
+
+create table wrsr(
+
+      no bigint(100) unsigned not null auto_increment,
+      enc_Year varchar(20) not null,
+      enc_Wearing varchar(20) not null,
+      enc_Release varchar(20) not null,
+      enc_Stock varchar(20) not null,
+      enc_Return varchar(20) not null,
+      enc_gf_Wearing varchar(20) not null,
+      enc_gf_Release varchar(20) not null,
+      enc_gf_Stock varchar(20) not null,
+      enc_gf_Return varchar(20) not null,
+      email varchar(50) not null,
+      primary key (no)
+
+)  DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+desc wrsr;
+
+use user;
+
+create table members (
+email varchar(25) not null PRIMARY KEY,
+username varchar(25) not null,
+password varchar(256) not null);
+
+desc members;
+
+exit
+
+3. 파일 /var/www/html 풀기
+
+4. 저장 파일 경로
+
+cd /
+
+mkdir files
+
+chmod 777 files
+
+5. 34.64.253.64/signup.html 후 34.64.253.64/signin.html
+
+php/write.php, signout.php 
+header 34.64.253.64 로 수정
+
+6. csv 파일 업로드
+
+
+
+
+
+
