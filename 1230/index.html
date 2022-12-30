@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/default.css">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+
+        function openCanvas() {
+            var sidenavWidth = document.getElementById("sidenav").style.width
+            
+            if (sidenavWidth == "15%" || !sidenavWidth ) {
+                
+                document.getElementById("sidenav").style.width = "0%"
+                document.getElementById("navbar").style.marginLeft = "0%"
+                document.getElementById("closebtn").style.marginLeft = "0%"
+                document.getElementById("content").style.marginLeft = "0%"
+
+            } else {
+
+                document.getElementById("sidenav").style.width = "15%"
+                document.getElementById("navbar").style.marginLeft = "15%"
+                document.getElementById("closebtn").style.marginLeft = "100px"
+                document.getElementById("content").style.marginLeft = "15%"
+            }
+
+        }
+        function tableData(){
+        $.ajax({
+            url:"php/lm_insp_regu_area.php",
+            method:"POST",
+            success:function(data){
+                $('#table_data').html(data);
+              }
+            })
+          }
+          tableData()
+    </script>
+</head>
+<body>
+    <nav id="navbar">
+        <ul>
+            <li>기준정보</li>
+            <li>작업관리</li>
+            <li>안전관리</li>
+            <li>시스템관리</li>
+        </ul>
+    </nav>
+    <div id="sidenav">
+        <header id="sidenavtitle" >Platon</header>
+        <button id="closebtn" onclick="openCanvas()">></button>
+        <form class="form-inline" id="sidenavsearch" action="#">
+            <input type="text" class="form-control" placeholder="검색어를 입력하세요.">
+        </form>
+        <div class="divborder">
+            <div id="listtable" >
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </div>
+        </div>
+        <div class="divborder">
+            <div id="user" >
+                
+            </div>
+        </div>
+    </div>
+
+    <div id="table_data" class="content">
+
+    </div>
+
+</body>
+</html>
